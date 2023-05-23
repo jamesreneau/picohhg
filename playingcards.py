@@ -1,8 +1,25 @@
+""" PlayingCards - Card, deck and button objects for playing cards
+
+Version 01
+James M. Reneau Ph.D.
+http://www.picohhg.com
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 2.0 Generic License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/2.0/ or send
+a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+V
+00		2023-05-08	jmr		original coding
+01		2023-05-22	jmr		Split out symbols
+
+"""
+
 import random
 import math
 import time
 import sys
 from choosers import ChooserUIButton
+from symbols import Symbols
 
 
 class PlayingCard():
@@ -89,59 +106,9 @@ class PlayingCardButton(ChooserUIButton):
     def __init__(self, oled, x, y, card, back=False):
         self.card = card
         self.back = back ## show back
+        symbols = Symbols(oled)
         super().__init__( oled, x, y, "", 20, 24, self.drawCardFace)
         
-    def drawSuiteClub(self, x, y, fg):
-        self.oled.vline(x + 0, y  + 4, 2, fg)
-        self.oled.vline(x + 1, y  + 3, 4, fg)
-        self.oled.vline(x + 2, y  + 3, 4, fg)
-        self.oled.vline(x + 3, y  + 1, 2, fg)
-        self.oled.vline(x + 3, y  + 4, 2, fg)
-        self.oled.vline(x + 4, y  + 0, 4, fg)
-        self.oled.vline(x + 4, y  + 6, 4, fg)
-        self.oled.vline(x + 5, y  + 0, 4, fg)
-        self.oled.vline(x + 5, y  + 8, 2, fg)
-        self.oled.vline(x + 6, y  + 1, 2, fg)
-        self.oled.vline(x + 6, y  + 4, 2, fg)
-        self.oled.vline(x + 7, y  + 3, 4, fg)
-        self.oled.vline(x + 8, y  + 3, 4, fg)
-        self.oled.vline(x + 9, y  + 4, 2, fg)
-        
-    def drawSuiteSpade(self, x, y, fg):
-        self.oled.vline(x+0, y+4, 1, fg)
-        self.oled.vline(x+1, y+3, 4, fg)
-        self.oled.vline(x+2, y+2, 5, fg)
-        self.oled.vline(x+3, y+1, 5, fg)
-        self.oled.vline(x+4, y+0, 10, fg)
-        self.oled.vline(x+5, y+0, 10, fg)
-        self.oled.vline(x+6, y+1, 5, fg)
-        self.oled.vline(x+7, y+2, 5, fg)
-        self.oled.vline(x+8, y+3, 4, fg)
-        self.oled.vline(x+9, y+4, 1, fg)
-
-    def drawSuiteHeart(self, x, y, fg):
-        self.oled.vline(x+0, y+2, 2, fg)
-        self.oled.vline(x+1, y+1, 4, fg)
-        self.oled.vline(x+2, y+0, 7, fg)
-        self.oled.vline(x+3, y+1, 7, fg)
-        self.oled.vline(x+4, y+2, 8, fg)
-        self.oled.vline(x+5, y+2, 8, fg)
-        self.oled.vline(x+6, y+1, 7, fg)
-        self.oled.vline(x+7, y+0, 7, fg)
-        self.oled.vline(x+8, y+1, 4, fg)            
-        self.oled.vline(x+9, y+2, 2, fg)
-        
-    def drawSuiteDiamond(self, x, y, fg):
-        self.oled.vline(x+0, y+4, 2, fg)
-        self.oled.vline(x+1, y+3, 4, fg)
-        self.oled.vline(x+2, y+2, 6, fg)
-        self.oled.vline(x+3, y+1, 8, fg)
-        self.oled.vline(x+4, y+0, 10, fg)
-        self.oled.vline(x+5, y+0, 10, fg)
-        self.oled.vline(x+6, y+1, 8, fg)
-        self.oled.vline(x+7, y+2, 6, fg)
-        self.oled.vline(x+8, y+3, 4, fg)
-        self.oled.vline(x+9, y+4, 2, fg)
 
     def drawCardFace(self, oled, x, y):
         fg = self.fgColor()
@@ -150,13 +117,13 @@ class PlayingCardButton(ChooserUIButton):
             ## draw face
             (s, c) = self.card.short()
             if s == "S":
-                self.drawSuiteSpade(x, y, fg)
+                self.symbols.draw(x, y, Symbols.SPADE, fg)
             elif s == "H":
-                self.drawSuiteHeart(x, y, fg)
+                self.symbols.draw(x, y, Symbols.HEARRT, fg)
             elif s == "C":
-                self.drawSuiteClub(x, y, fg)
+                self.symbols.draw(x, y, Symbols.CLUB, fg)
             elif s == "D":
-                self.drawSuiteDiamond(x, y,fg)
+                self.symbols.draw(x, y, Symbols.DIAMOND, fg)
             else:
                 self.oled.text(s, x, y, fg)
             self.oled.text(c, x, y + 12, fg)

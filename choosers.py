@@ -163,7 +163,12 @@ class ChooseString(ChooserBaseClass):
         self.isPassword = isPassword
     
     def get(self):
-        chars = "abcdefghijklmnopqrstuvwxyz BE"
+        chars = []
+        chars.append(list("abcdefghijklmnopqrstuvwxyz")+[" ","S^","Sv","<<","EN"])
+        chars.append(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")+[" ","S^","Sv","<<","EN"])
+        chars.append(list("0123456789")+[" ","S^","Sv","<<","EN"])
+        chars.append(sorted(list("!@#$%^&*()-=_+[]{}\\|;:'\",.<>/?"))+[" ","S^","Sv","<<","EN"])
+        row = 0
         if sys.implementation.name == 'micropython':
             # clear field
             self.oled.fill_rect(self.x,self.y,(self.l+len(self.prompt))*ChooserBaseClass.CHARW,ChooserBaseClass.CHARH,0)
@@ -172,15 +177,19 @@ class ChooseString(ChooserBaseClass):
             s = ""
             while True:
                 x = self.x + (len(self.prompt) + l) * ChooserBaseClass.CHARW
-                c = ChooseList(self.oled, self.rotary, self.button, chars, x, self.y, prompt="").get()
-                if c == 'E':
+                c = ChooseList(self.oled, self.rotary, self.button, chars[row], x, self.y, prompt="").get()
+                if c == 'EN':
                     return s
-                elif c == 'B':
+                elif c == '<<':
                     self.oled.fill_rect(x,self.y,x+ChooserBaseClass.CHARW,ChooserBaseClass.CHARH,0)
                     l = l - 1
                     if l < 0:
                         l = 0
                     s = s[0:l]
+                elif c == "S^":
+                    row = (row + 1) % len(chars)
+                elif c == "Sv":
+                    row = (row - 1) % len(chars)
                 else:
                     self.oled.fill_rect(x,self.y,x+ChooserBaseClass.CHARW,ChooserBaseClass.CHARH,0)
                     if self.isPassword:

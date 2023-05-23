@@ -1,6 +1,6 @@
 """ Menu (use as main.py)
 
-Version 00
+Version 03
 James M. Reneau Ph.D.
 http://www.picohhg.com
 
@@ -13,7 +13,6 @@ V
 01      2023-05-09  jmr     updated sst to sst02, added quit
 02		2023-05-19	jmr		added jacks or better
 03		2023-05-20	jmr		added one hand solitare
-04      2023-05-21  jmr     renamed sst and pong
 
 """
 import sys
@@ -47,15 +46,15 @@ def find(l, s):
         return -1
 
     
-VERSION = "04"
-menufiles = ["pong.py", "sst.py", "jacksorbetter.py", "onehandedsolitare.py", "clockywocky.py", "", ""]
+VERSION = "03"
+menufiles = ["pong04.py", "sst02.py", "jacksorbetter.py", "onehandedsolitare.py", "clockywocky.py", "", ""]
 menunames = ["PicoPong", "Super Trekie", "Jacks or Better", "OneHand Solitare", "Clocky Woky", "About", "Quit"]
 
 while True:
     files = os.listdir()
     installed = []
-    for f in menufiles:
-        i = find(files, f)
+    for f in files:
+        i = find(menufiles, f)
         if i >=0:
             installed.append(menunames[i])
     installed.append(menunames[-2])
