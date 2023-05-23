@@ -106,7 +106,7 @@ class PlayingCardButton(ChooserUIButton):
     def __init__(self, oled, x, y, card, back=False):
         self.card = card
         self.back = back ## show back
-        symbols = Symbols(oled)
+        self.symbols = Symbols(oled)
         super().__init__( oled, x, y, "", 20, 24, self.drawCardFace)
         
 
@@ -119,7 +119,7 @@ class PlayingCardButton(ChooserUIButton):
             if s == "S":
                 self.symbols.draw(x, y, Symbols.SPADE, fg)
             elif s == "H":
-                self.symbols.draw(x, y, Symbols.HEARRT, fg)
+                self.symbols.draw(x, y, Symbols.HEART, fg)
             elif s == "C":
                 self.symbols.draw(x, y, Symbols.CLUB, fg)
             elif s == "D":

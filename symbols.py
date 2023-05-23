@@ -19,7 +19,7 @@ V
 import framebuf
 from micropython import const
 
-class Symbols(framebuf.FrameBuffer):
+class Symbols():
     
     ## 8x8
     ENTER = const(0)
@@ -54,7 +54,7 @@ class Symbols(framebuf.FrameBuffer):
         elif symbol==Symbols.BACKSPACE:
             self.__drawBackspace(x, y, fg)     
 
-    def _drawClub(self, x, y, fg):
+    def __drawClub(self, x, y, fg):
         ## draw a Club (10x10)
         self.display.vline(x+0, y+4, 2, fg)
         self.display.vline(x+1, y+3, 4, fg)

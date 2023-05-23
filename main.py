@@ -47,7 +47,7 @@ def find(l, s):
 
     
 VERSION = "03"
-menufiles = ["pong04.py", "sst02.py", "jacksorbetter.py", "onehandedsolitare.py", "clockywocky.py", "", ""]
+menufiles = ["pong04.py", "sst.py", "jacksorbetter.py", "onehandedsolitare.py", "clockywocky.py", "", ""]
 menunames = ["PicoPong", "Super Trekie", "Jacks or Better", "OneHand Solitare", "Clocky Woky", "About", "Quit"]
 
 while True:
