@@ -35,6 +35,7 @@ ampy -p COM5 put main.py
 ampy -p COM5 put rotary.PY
 ampy -p COM5 put rotaryIRQ.py
 ampy -p COM5 put ssd1306.py
+ampy -p COM5 put symbols.py
 ```
 
 ```
