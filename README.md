@@ -44,9 +44,14 @@ ampy -p COM5 put jacksorbetter.py
 ampy -p COM5 put onehandedsolitare.py
 ampy -p COM5 put pong.py
 ampy -p COM5 put sst.py
+ampy -p COM5 put theoracle.py
 ```
 
-Disconnect your PicoHHG and turn it on. You should see the menu and be able to scroll and click. If you are unable to click your rotary button may require configuration. Follow the on screen instructions.
+Disconnect your PicoHHG and turn it on. You should see the menu and be able to scroll and click.
+
+### Troubleshoot Button (Not Working?)
+
+If you are unable to click your rotary button may require configuration. Follow the on screen instructions.
 
 ```
 ampy -p COM5 run buttonConfigure.py
