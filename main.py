@@ -13,7 +13,7 @@ V
 01      2023-05-09  jmr     updated sst to sst02, added quit
 02		2023-05-19	jmr		added jacks or better
 03		2023-05-20	jmr		added one hand solitare
-
+04		2023-05-23	jmr		added the oracle
 """
 import sys
 import time
@@ -47,8 +47,8 @@ def find(l, s):
 
     
 VERSION = "03"
-menufiles = ["pong04.py", "sst.py", "jacksorbetter.py", "onehandedsolitare.py", "clockywocky.py", "", ""]
-menunames = ["PicoPong", "Super Trekie", "Jacks or Better", "OneHand Solitare", "Clocky Woky", "About", "Quit"]
+menufiles = ["pong04.py", "sst.py", "jacksorbetter.py", "onehandedsolitare.py", "theoracle.py", "clockywocky.py", "", ""]
+menunames = ["PicoPong", "Super Trekie", "Jacks or Better", "OneHand Solitare", "The Oracle", "Clocky Woky", "About", "Quit"]
 
 while True:
     files = os.listdir()

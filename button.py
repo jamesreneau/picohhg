@@ -46,4 +46,11 @@ class Button():
             if self.pressed():
                 break
             time.sleep(.1)
+        
+    def waitRelease(self):
+        ## wait til press
+        while True:
+            if not self.pressed():
+                break
+            time.sleep(.1)
             
